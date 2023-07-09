@@ -3,33 +3,94 @@ import { View, StyleSheet, Text, ScrollView, FlatList } from "react-native";
 import RoutineCard from "../Card/RoutineCard";
 
 const data = [
-  { id: 1, title: "Card 1", content: "This is the content of Card 1." },
-  { id: 2, title: "Card 2", content: "This is the content of Card 2." },
-  { id: 3, title: "Card 3", content: "This is the content of Card 3." },
+  {
+    id: 1,
+    subject: "Math",
+    room: "LB 203",
+    teacher: "Teacher teaches",
+    batch: 2018,
+    group: "A",
+    startingTime: "8am",
+    endingTime: "9am",
+  },
+  {
+    id: 2,
+    subject: "Math",
+    room: "LB 203",
+    teacher: "Teacher teaches",
+    batch: 2018,
+    group: "A",
+    startingTime: "8am",
+    endingTime: "9am",
+  },
+  {
+    id: 3,
+    subject: "Math",
+    room: "LB 203",
+    teacher: "Teacher teaches",
+    batch: 2018,
+    group: "A",
+    startingTime: "8am",
+    endingTime: "9am",
+  },
+  {
+    id: 4,
+    subject: "Math",
+    room: "LB 203",
+    teacher: "Teacher teaches",
+    batch: 2018,
+    group: "A",
+    startingTime: "8am",
+    endingTime: "9am",
+  },
+  {
+    id: 5,
+    subject: "Math",
+    room: "LB 203",
+    teacher: "Teacher teaches",
+    batch: 2018,
+    group: "A",
+    startingTime: "8am",
+    endingTime: "9am",
+  },
   // Add more cards here
 ];
 
-export default function HomePage() {
+export default function HomePage({ navigation }) {
   return (
     <>
       <View style={styles.container}>
         <View style={styles.column}>
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>Routine</Text>
+            <Text
+              style={styles.cardTitle}
+              onPress={() => navigation.navigate("Routine", { data })}
+            >
+              Routine
+            </Text>
           </View>
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>Attendance</Text>
+            <Text
+              style={styles.cardTitle}
+              onPress={() => navigation.navigate("Attendance", { data })}
+            >
+              Attendance
+            </Text>
           </View>
         </View>
         <View>
-          <Text style={styles.nextRoutines}>The upcoming routines: </Text>
+          <Text style={styles.nextRoutines}>The upcoming classes: </Text>
+          <View style={styles.groupBatch}>
+            <Text style={styles.groupBatch}>Batch: {data[0].batch}</Text>
+            <Text style={styles.groupBatch}>Group: {data[0].group}</Text>
+          </View>
         </View>
-        <ScrollView>
-          <RoutineCard />
-          <RoutineCard />
-          <RoutineCard />
-          <RoutineCard />
-        </ScrollView>
+
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <RoutineCard data={item} />}
+          keyExtractor={item => item.id}
+        />
       </View>
     </>
   );
@@ -62,5 +123,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginStart: 20,
     fontSize: 16,
+    fontWeight: "bold",
+  },
+  groupBatch: {
+    flexDirection: "row",
+    paddingStart: 15,
+    fontSize: 16,
+    fontWeight: "bold",
+    backgroundColor: "#ccc",
+    marginTop: 5,
+    marginBottom: 5,
   },
 });

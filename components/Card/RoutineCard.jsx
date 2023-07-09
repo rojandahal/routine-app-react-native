@@ -1,16 +1,28 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-export default function RoutineCard({item}) {
+export default function RoutineCard({ data }) {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Card 1</Text>
-        <Text style={styles.cardText}>This is the content of Card 1.</Text>
-      </View>
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Card 2</Text>
-        <Text style={styles.cardText}>This is the content of Card 2.</Text>
+        <View style={styles.headingText}>
+          <Image
+            style={styles.imageThumbnail}
+            source={require("../../assets/png/profile.png")}
+          />
+          <View style={{ marginStart: 10 }}>
+            <Text style={styles.cardTitle}>{data.subject}</Text>
+            <Text style={styles.cardText}>{data.teacher}</Text>
+          </View>
+        </View>
+
+        <View style={styles.bottomText}>
+          <Text style={styles.cardText}>{data.startingTime}</Text>
+          <Text style={styles.cardText}> - </Text>
+          <Text style={styles.cardText}>{data.endingTime}</Text>
+        </View>
+
+        <Text style={styles.cardRoom}>{data.room}</Text>
       </View>
     </View>
   );
@@ -19,7 +31,15 @@ export default function RoutineCard({item}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-		marginStart: 20,
+    marginStart: 20,
+  },
+  headingText: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  imageThumbnail: {
+    width: 50,
+    height: 50,
   },
   card: {
     backgroundColor: "#fff",
@@ -37,5 +57,14 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
+  },
+  cardRoom: {
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "right",
+  },
+  bottomText: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
   },
 });
