@@ -7,47 +7,50 @@ import SignupScreen from "./components/Screens/SignupScreen";
 import HomePage from "./components/Screens/HomePage";
 import Routine from "./components/Screens/Routine";
 import Attendance from "./components/Screens/Attendance";
+import { PaperProvider } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const userLoggedIn = false; // Set this to true when the user is logged in
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='LandingPage'>
-        <Stack.Screen
-          name='LandingPage'
-          component={LandingPage}
-          options={{ title: "LandingPage" }}
-        />
-        <Stack.Screen
-          name='Signup'
-          component={SignupScreen}
-          options={{ title: "Signup" }}
-        />
-        <Stack.Screen
-          name='Login'
-          component={LoginScreen}
-          options={{ title: "Login" }}
-          initialParams={{ userLoggedIn: false }}
-        />
-        <Stack.Screen
-          name='Home'
-          component={HomePage}
-          options={{ title: "Home" }}
-        />
-				<Stack.Screen
-          name='Routine'
-          component={Routine}
-          options={{ title: "Routine" }}
-        />
-				<Stack.Screen
-          name='Attendance'
-          component={Attendance}
-          options={{ title: "Attendance" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='LandingPage'>
+          <Stack.Screen
+            name='LandingPage'
+            component={LandingPage}
+            options={{ title: "LandingPage" }}
+          />
+          <Stack.Screen
+            name='Signup'
+            component={SignupScreen}
+            options={{ title: "Signup" }}
+          />
+          <Stack.Screen
+            name='Login'
+            component={LoginScreen}
+            options={{ title: "Login" }}
+            initialParams={{ userLoggedIn: false }}
+          />
+          <Stack.Screen
+            name='Home'
+            component={HomePage}
+            options={{ title: "Home" }}
+          />
+          <Stack.Screen
+            name='Routine'
+            component={Routine}
+            options={{ title: "Routine" }}
+          />
+          <Stack.Screen
+            name='Attendance'
+            component={Attendance}
+            options={{ title: "Attendance" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
 
