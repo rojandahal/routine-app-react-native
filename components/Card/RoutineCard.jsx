@@ -3,10 +3,10 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import moment from "moment";
 
 export default function RoutineCard({ data }) {
-  // const currentTime = moment();
-  // const endingTime = moment(data.endingTime, "ha");
-  // const isCompleted = endingTime.isBefore(currentTime);
-  const isCompleted = false;
+  const currentTime = moment();
+  const endingTime = moment(data.endingTime, "ha");
+  const isCompleted = endingTime.isBefore(currentTime);
+  // const isCompleted = false;
 
   return (
     <View style={[styles.container, isCompleted && styles.disabledContainer]}>
