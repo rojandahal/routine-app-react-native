@@ -23,7 +23,8 @@ const TeacherAccordion = ({ teacherData }) => {
           data={teacherData}
           renderItem={({ item }) => (
             <Chip
-              mode='outlined'
+              mode='flat'
+							showSelectedOverlay={true}
               style={{ margin: 4 }}
               onPress={() =>
                 selectedTeacher

@@ -1,17 +1,15 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import React, { useState } from "react";
 import { FlatList } from "react-native";
 import RoutineCard from "../Card/RoutineCard";
 import { useRoute } from "@react-navigation/native";
-import { Avatar, Chip, List } from "react-native-paper";
 import TeacherAccordion from "../TeacherAccordion/TeacherAccordion";
+import TeacherFilterChip from "../TeacherAccordion/TeacherFilterChip";
 
 const Routine = () => {
   const route = useRoute();
   const data = route.params.data;
-  const [selectedSubject, setSelectedSubject] = useState(false);
-  const [selectedBatch, setSelectedBatch] = useState(false);
-  const [expanded, setExpanded] = useState(true);
+  const [filterVisible, setFilterVisible] = useState(false);
 
   const teacherData = [
     {
@@ -24,45 +22,68 @@ const Routine = () => {
     },
   ];
 
-  const _handlePress = () => {
-    setExpanded(!expanded);
+  const filterData = [
+    {
+      id: 1,
+      name: "Subject",
+    },
+    {
+      id: 2,
+      name: "Batch",
+    },
+  ];
+
+  const toggleFilterVisible = () => {
+    setFilterVisible(!filterVisible);
   };
 
-  // console.log(data)
+  const closeModal = () => {
+    setFilterVisible(false);
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.filter}>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Filter Routine</Text>
-        <View style={{ flexDirection: "row" }}>
-          <Chip
-            mode='outlined'
-            style={{ margin: 4 }}
-            onPress={() =>
-              selectedSubject
-                ? setSelectedSubject(false)
-                : setSelectedSubject(true)
-            }
-            selected={selectedSubject}
-          >
-            Subject
-          </Chip>
-          <Chip
-            mode='outlined'
-            style={{ margin: 4 }}
-            onPress={() =>
-              selectedBatch ? setSelectedBatch(false) : setSelectedBatch(true)
-            }
-            selected={selectedBatch}
-          >
-            Batch
-          </Chip>
-        </View>
-      </View>
-      <TeacherAccordion teacherData={teacherData} />
+      <TouchableOpacity
+        onPress={toggleFilterVisible}
+        style={styles.filterButton}
+      >
+        <Text style={{ fontSize: 18, textAlign: "center" }}>Filter</Text>
+      </TouchableOpacity>
+
+      <Modal
+        visible={filterVisible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setFilterVisible(false)}
+      >
+        <TouchableOpacity
+          activeOpacity={1}
+          style={styles.modalContainer}
+          onPress={closeModal}
+        >
+          <View style={styles.modalContent}>
+            <View style={styles.filterContainer}>
+              <View style={styles.filter}>
+                <Text style={{ fontSize: 18 }}>Filter Routine</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <TeacherFilterChip filterData={filterData} />
+                </View>
+              </View>
+              <View style={{ marginBottom: 10, width: "50%" }}>
+                <TeacherAccordion
+                  teacherData={teacherData}
+                  style={styles.accordion}
+                />
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </Modal>
+
       <FlatList
         data={data}
         renderItem={({ item }) => <RoutineCard data={item} />}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
@@ -71,11 +92,39 @@ const Routine = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
-    marginStart: 20,
+    marginTop: 10,
+    borderColor: "#ccc",
+  },
+  filterButton: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    width: "20%",
+    borderRadius: 8,
+    padding: 10,
+    marginEnd: 10,
+    marginStart: 10,
+    marginBottom: 10,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+  filterContainer: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    padding: 10,
+    width: "100%",
   },
   filter: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
 });
+
 export default Routine;
