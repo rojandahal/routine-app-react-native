@@ -3,9 +3,10 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import moment from "moment";
 
 export default function RoutineCard({ data }) {
-  const currentTime = moment();
-  const endingTime = moment(data.endingTime, "ha");
-  const isCompleted = endingTime.isBefore(currentTime);
+  // const currentTime = moment();
+  // const endingTime = moment(data.endingTime, "ha");
+  // const isCompleted = endingTime.isBefore(currentTime);
+  const isCompleted = false;
 
   return (
     <View style={[styles.container, isCompleted && styles.disabledContainer]}>
@@ -36,7 +37,8 @@ export default function RoutineCard({ data }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginStart: 20,
+		marginStart: 10,
+		marginEnd: 10,
   },
   disabledContainer: {
     opacity: 0.5,
@@ -56,7 +58,6 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     padding: 16,
     marginBottom: 16,
-    width: 300,
   },
   disabledCard: {
     backgroundColor: "#f2f2f2",
@@ -71,9 +72,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   cardRoom: {
-    fontSize: 14,
     fontWeight: "bold",
     textAlign: "right",
+    flexWrap: "wrap",
   },
   bottomText: {
     flexDirection: "row",

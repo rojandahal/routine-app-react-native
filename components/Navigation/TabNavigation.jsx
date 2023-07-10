@@ -24,7 +24,7 @@ const data = [
   },
   {
     id: 2,
-    subject: "Math",
+    subject: "Database Management System",
     room: "LB 203",
     teacher: "Teacher teaches",
     batch: 2018,
@@ -34,7 +34,7 @@ const data = [
   },
   {
     id: 3,
-    subject: "Math",
+    subject: "Data Structure and Algorithm",
     room: "LB 203",
     teacher: "Teacher teaches",
     batch: 2018,
@@ -44,7 +44,7 @@ const data = [
   },
   {
     id: 4,
-    subject: "Math",
+    subject: "Engineering Mathematics",
     room: "LB 203",
     teacher: "Teacher teaches",
     batch: 2018,
@@ -54,7 +54,7 @@ const data = [
   },
   {
     id: 5,
-    subject: "Math",
+    subject: "Computer Network",
     room: "LB 203",
     teacher: "Teacher teaches",
     batch: 2018,

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
 import { FlatList } from "react-native";
 import { Chip, List } from "react-native-paper";
 
@@ -20,11 +21,12 @@ const TeacherAccordion = ({ teacherData }) => {
         title='Select Teacher'
       >
         <FlatList
+          style={{ maxHeight: 200 }}
           data={teacherData}
           renderItem={({ item }) => (
             <Chip
               mode='flat'
-							showSelectedOverlay={true}
+              showSelectedOverlay={true}
               style={{ margin: 4 }}
               onPress={() =>
                 selectedTeacher

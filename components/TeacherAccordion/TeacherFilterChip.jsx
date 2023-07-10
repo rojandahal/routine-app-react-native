@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { Chip } from "react-native-paper";
+import { Chip, TextInput } from "react-native-paper";
 
-const TeacherFilterChip = ({ filterData }) => {
+const TeacherFilterChip = ({ filterData, selectedFilterReturn }) => {
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  useEffect(() => {
+    selectedFilterReturn(selectedFilters);
+  }, [selectedFilters]);
 
   const handleFilterSelection = filterName => {
     if (selectedFilters.includes(filterName)) {
@@ -29,7 +33,7 @@ const TeacherFilterChip = ({ filterData }) => {
         </Chip>
       )}
       keyExtractor={item => item.id}
-    />
+			/>
   );
 };
 
