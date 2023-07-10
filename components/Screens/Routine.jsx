@@ -14,6 +14,7 @@ const Routine = () => {
   const [filteredData, setFilteredData] = useState(data);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -26,6 +27,7 @@ const Routine = () => {
         setFilteredData(data);
         setSelectedFilters([]);
         setSearchText("");
+        setSelectedTeacher(null);
       };
     }, [])
   );
@@ -39,62 +41,62 @@ const Routine = () => {
       id: 2,
       name: "Teacher 2",
     },
-		{
-			id: 3,
-			name: "Teacher 3",
-		},
-		{
-			id: 4,
-			name: "Teacher 4",
-		},
-		{
-			id: 5,
-			name: "Teacher 5",
-		},
-		{
-			id: 6,
-			name: "Teacher 6",
-		},
-		{
-			id: 7,
-			name: "Teacher 7",
-		},
-		{
-			id: 8,
-			name: "Teacher 8",
-		},
-		{
-			id: 9,
-			name: "Teacher 9",
-		},
-		{
-			id: 10,
-			name: "Teacher 10",
-		},
-		{
-			id: 11,
-			name: "Teacher 5",
-		},
-		{
-			id: 12,
-			name: "Teacher 6",
-		},
-		{
-			id: 13,
-			name: "Teacher 7",
-		},
-		{
-			id: 14,
-			name: "Teacher 8",
-		},
-		{
-			id: 15,
-			name: "Teacher 9",
-		},
-		{
-			id: 16,
-			name: "Teacher 10",
-		},
+    {
+      id: 3,
+      name: "Teacher 3",
+    },
+    {
+      id: 4,
+      name: "Teacher 4",
+    },
+    {
+      id: 5,
+      name: "Teacher 5",
+    },
+    {
+      id: 6,
+      name: "Teacher 6",
+    },
+    {
+      id: 7,
+      name: "Teacher 7",
+    },
+    {
+      id: 8,
+      name: "Teacher 8",
+    },
+    {
+      id: 9,
+      name: "Teacher 9",
+    },
+    {
+      id: 10,
+      name: "Teacher 10",
+    },
+    {
+      id: 11,
+      name: "Teacher 5",
+    },
+    {
+      id: 12,
+      name: "Teacher 6",
+    },
+    {
+      id: 13,
+      name: "Teacher 7",
+    },
+    {
+      id: 14,
+      name: "Teacher 8",
+    },
+    {
+      id: 15,
+      name: "Teacher 9",
+    },
+    {
+      id: 16,
+      name: "Teacher 10",
+    },
   ];
 
   const filterData = [
@@ -110,6 +112,9 @@ const Routine = () => {
 
   const toggleFilterVisible = () => {
     setFilterVisible(!filterVisible);
+    setSelectedFilters([]);
+    setSearchText("");
+    setSelectedTeacher(null);
   };
 
   const closeModal = () => {
@@ -119,12 +124,16 @@ const Routine = () => {
   const applyFilters = () => {
     // Filter the data based on selected filters
     let filteredData = data;
-    console.log("searchText", searchText);
     if (selectedFilters.includes("Subject")) {
       filteredData = filteredData.filter(item =>
         item.subject.toUpperCase().includes(searchText.toUpperCase())
       );
-      // console.log("filteredData", filteredData);
+    }
+    // Filter the data based on selected teacher
+    if (selectedTeacher !== null) {
+      filteredData = filteredData.filter(
+        item => item.teacher === selectedTeacher
+      );
     }
 
     setFilteredData(filteredData);
@@ -139,6 +148,10 @@ const Routine = () => {
 
   const handleFilterSearch = text => {
     setSearchText(text);
+  };
+
+  const onSelectedTeacher = selectedTeachers => {
+    setSelectedTeacher(selectedTeachers);
   };
 
   return (
@@ -184,6 +197,7 @@ const Routine = () => {
                 <TeacherAccordion
                   teacherData={teacherData}
                   style={styles.accordion}
+                  selectedTeacherReturn={onSelectedTeacher}
                 />
               </View>
             </View>

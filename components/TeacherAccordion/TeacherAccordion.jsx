@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
 import { FlatList } from "react-native";
 import { Chip, List } from "react-native-paper";
 
-const TeacherAccordion = ({ teacherData }) => {
+const TeacherAccordion = ({ teacherData, selectedTeacherReturn }) => {
   const [selectedTeacher, setSelectedTeacher] = useState(null);
-
-  useEffect(() => {
-    console.log(selectedTeacher);
-  }, [selectedTeacher]);
 
   const handleTeacherSelection = teacherName => {
     setSelectedTeacher(teacherName);
+    selectedTeacherReturn(teacherName);
   };
 
   return (
