@@ -20,8 +20,8 @@ const data = [
     teacher: "Teacher teaches",
     batch: 2018,
     group: "A",
-    startingTime: "8am",
-    endingTime: "9am",
+    startingTime: "9am",
+    endingTime: "10am",
   },
   {
     id: 3,
@@ -30,8 +30,8 @@ const data = [
     teacher: "Teacher teaches",
     batch: 2018,
     group: "A",
-    startingTime: "8am",
-    endingTime: "9am",
+    startingTime: "10am",
+    endingTime: "11am",
   },
   {
     id: 4,
@@ -40,8 +40,8 @@ const data = [
     teacher: "Teacher teaches",
     batch: 2018,
     group: "A",
-    startingTime: "8am",
-    endingTime: "9am",
+    startingTime: "11am",
+    endingTime: "12pm",
   },
   {
     id: 5,
@@ -50,8 +50,8 @@ const data = [
     teacher: "Teacher teaches",
     batch: 2018,
     group: "A",
-    startingTime: "8am",
-    endingTime: "9am",
+    startingTime: "12pm",
+    endingTime: "1pm",
   },
   // Add more cards here
 ];

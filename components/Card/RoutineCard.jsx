@@ -1,10 +1,15 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import moment from "moment";
 
 export default function RoutineCard({ data }) {
+  const currentTime = moment();
+  const endingTime = moment(data.endingTime, "ha");
+  const isCompleted = endingTime.isBefore(currentTime);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
+    <View style={[styles.container, isCompleted && styles.disabledContainer]}>
+      <View style={[styles.card, isCompleted && styles.disabledCard]}>
         <View style={styles.headingText}>
           <Image
             style={styles.imageThumbnail}
@@ -33,6 +38,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginStart: 20,
   },
+  disabledContainer: {
+    opacity: 0.5,
+  },
   headingText: {
     flexDirection: "row",
     alignItems: "center",
@@ -49,6 +57,10 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     width: 300,
+  },
+  disabledCard: {
+    backgroundColor: "#f2f2f2",
+    borderWidth: 1,
   },
   cardTitle: {
     fontSize: 18,
