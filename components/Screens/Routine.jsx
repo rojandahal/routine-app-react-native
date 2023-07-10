@@ -3,13 +3,30 @@ import React, { useState } from "react";
 import { FlatList } from "react-native";
 import RoutineCard from "../Card/RoutineCard";
 import { useRoute } from "@react-navigation/native";
-import { Avatar, Chip } from "react-native-paper";
+import { Avatar, Chip, List } from "react-native-paper";
+import TeacherAccordion from "../TeacherAccordion/TeacherAccordion";
 
 const Routine = () => {
   const route = useRoute();
   const data = route.params.data;
   const [selectedSubject, setSelectedSubject] = useState(false);
   const [selectedBatch, setSelectedBatch] = useState(false);
+  const [expanded, setExpanded] = useState(true);
+
+  const teacherData = [
+    {
+      id: 1,
+      name: "Teacher 1",
+    },
+    {
+      id: 2,
+      name: "Teacher 2",
+    },
+  ];
+
+  const _handlePress = () => {
+    setExpanded(!expanded);
+  };
 
   // console.log(data)
   return (
@@ -41,6 +58,7 @@ const Routine = () => {
           </Chip>
         </View>
       </View>
+      <TeacherAccordion teacherData={teacherData} />
       <FlatList
         data={data}
         renderItem={({ item }) => <RoutineCard data={item} />}
