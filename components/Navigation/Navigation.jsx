@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LandingPage from "../Screens/LandingPage";
 import SignupScreen from "../Screens/SignupScreen";
 import LoginScreen from "../Screens/LoginScreen";
-import HomePage from "../Screens/HomePage";
+import HomePage from "../Screens/HomePage";	
 import Routine from "../Screens/Routine";
 import Attendance from "../Screens/Attendance";
 
@@ -30,7 +30,7 @@ const Navigation = () => {
           options={{ title: "Login" }}
           initialParams={{ userLoggedIn: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name='Home'
           component={HomePage}
           options={{ title: "Home" }}
@@ -44,7 +44,7 @@ const Navigation = () => {
           name='Attendance'
           component={Attendance}
           options={{ title: "Attendance" }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

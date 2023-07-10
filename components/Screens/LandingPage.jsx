@@ -11,7 +11,7 @@ function LandingPage({ navigation, route }) {
       <Text>User Logged In: {userLoggedIn.toString()}</Text>
       <Button
         title='Go to Details'
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Signup")}
       />
     </View>
   );

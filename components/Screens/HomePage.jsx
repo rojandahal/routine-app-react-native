@@ -1,62 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text, ScrollView, FlatList } from "react-native";
 import RoutineCard from "../Card/RoutineCard";
-
-const data = [
-  {
-    id: 1,
-    subject: "Math",
-    room: "LB 203",
-    teacher: "Teacher teaches",
-    batch: 2018,
-    group: "A",
-    startingTime: "8am",
-    endingTime: "9am",
-  },
-  {
-    id: 2,
-    subject: "Math",
-    room: "LB 203",
-    teacher: "Teacher teaches",
-    batch: 2018,
-    group: "A",
-    startingTime: "9am",
-    endingTime: "10am",
-  },
-  {
-    id: 3,
-    subject: "Math",
-    room: "LB 203",
-    teacher: "Teacher teaches",
-    batch: 2018,
-    group: "A",
-    startingTime: "10am",
-    endingTime: "11am",
-  },
-  {
-    id: 4,
-    subject: "Math",
-    room: "LB 203",
-    teacher: "Teacher teaches",
-    batch: 2018,
-    group: "A",
-    startingTime: "11am",
-    endingTime: "12pm",
-  },
-  {
-    id: 5,
-    subject: "Math",
-    room: "LB 203",
-    teacher: "Teacher teaches",
-    batch: 2018,
-    group: "A",
-    startingTime: "12pm",
-    endingTime: "1pm",
-  },
-  // Add more cards here
-];
+import { useRoute } from "@react-navigation/native";
 
 export default function HomePage({ navigation }) {
+  const route = useRoute();
+  const data = route.params.data;
+
   return (
     <>
       <View style={styles.container}>
