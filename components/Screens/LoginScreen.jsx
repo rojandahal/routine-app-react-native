@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import API from "../../env";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ export default function Login({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loginType, setLoginType] = useState("student");
 
   const handleLogin = async () => {
     setError("");
@@ -38,7 +40,7 @@ export default function Login({ navigation }) {
       };
 
       try {
-        const response = await fetch("http://192.168.18.10:8000/users/login/", {
+        const response = await fetch(API.login, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -46,13 +48,16 @@ export default function Login({ navigation }) {
           body: JSON.stringify(user),
         });
 
-        if (response.ok) {
+        if (response.status === 200) {
           console.log("Login successful");
           // Perform actions after successful login
           // navigation.replace("Home", { userLoggedIn: true });
+          const sessionId = response.headers.get("sessionid");
+          console.log("session id: ", sessionId);
         } else {
           const errorData = await response.json();
-          setError(errorData.email[0]);
+          console.log(errorData);
+          setError(errorData.message);
         }
       } catch (error) {
         setError("An unknown error occurred!");
@@ -96,6 +101,10 @@ export default function Login({ navigation }) {
             {showPassword ? "Hide" : "Show"}
           </Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        <Button onPress={() => setLoginType("teacher")}>Teacher</Button>
+        <Button onPress={() => setLoginType("student")}>Student</Button>
       </View>
 
       <TouchableOpacity>
